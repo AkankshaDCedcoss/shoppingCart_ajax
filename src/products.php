@@ -15,146 +15,7 @@ session_start();
 	<link href="style.css" type="text/css" rel="stylesheet">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script>
-		$(document).ready(function() {
-$("#display").append("<table><tr><th>Id</th><th>Image</th><th>Name</th><th>Price</th></tr></table>");
-
-
-			$("#addtocart0").click(function() {
-				console.log("In add to cart 1");
-				$.ajax({
-					url: 'function.php',
-					type: 'POST',
-					data: {
-						id: '101',
-						name: 'Basket Ball',
-						image: 'basketball.png',
-						price: '150',
-						action: 'add'
-					},
-					dataType: 'JSON',
-					success: function(data) {
-						
-						$.each(data, function(key, value) {
-							$("#display").append("<tr><td>" + value[0] + "</td><td>" + value[1] + "</td><td>" + value[2] + "</td><td>" + value[3] + "</td></tr>");
-						})
-
-					}
-				});
-			}); //add function
-
-
-
-
-
-			$("#addtocart1").click(function() {
-
-				$.ajax({
-					url: "function.php",
-
-					type: "post",
-
-					data: {
-						id: 102,
-						name: 'football',
-						image: 'football.png',
-						price: '120 ',
-						action: 'add'
-
-					},
-					dataType: 'JSON',
-					success: function(data) {
-						
-						$.each(data, function(key, value) {
-							$("#display").append("<tr><td>" + value[0] + "</td><td>" + value[1] + "</td><td>" + value[2] + "</td><td>" + value[3] + "</td></tr>");
-						})
-
-					}
-				});
-			}); //add function
-
-
-			$("#addtocart2").click(function() {
-
-				$.ajax({
-					url: "function.php",
-
-					type: "post",
-
-					data: {
-						id: 103,
-						name: 'soccer',
-						image: 'soccer.png',
-						price: '110',
-						action: 'add'
-
-					},
-					dataType: 'JSON',
-					success: function(data) {
-						
-						$.each(data, function(key, value) {
-							$("#display").append("<tr><td>" + value[0] + "</td><td>" + value[1] + "</td><td>" + value[2] + "</td><td>" + value[3] + "</td></tr>");
-						})
-
-					}
-				});
-			}); //add function
-
-
-			$("#addtocart3").click(function() {
-
-				$.ajax({
-					url: "function.php",
-
-					type: "post",
-
-					data: {
-						id: 104,
-						name: 'table-tennis',
-						image: 'table-tennis.png',
-						price: '150',
-						action: 'add'
-
-					},
-					dataType: 'JSON',
-					success: function(data) {
-						
-						$.each(data, function(key, value) {
-							$("#display").append("<tr><td>" + value[0] + "</td><td>" + value[1] + "</td><td>" + value[2] + "</td><td>" + value[3] + "</td></tr>");
-						})
-
-					}
-				});
-			}); //add function
-
-
-			$("#addtocart4").click(function() {
-
-				$.ajax({
-					url: "function.php",
-					type: "post",
-					data: {
-						id: 105,
-						name: 'tennis',
-						image: 'tennis.png',
-						price: '130',
-						action: 'add'
-					},
-					dataType: 'JSON',
-					success: function(data) {
-						
-						$.each(data, function(key, value) {
-							$("#display").append("<tr><td>" + value[0] + "</td><td>" + value[1] + "</td><td>" + value[2] + "</td><td>" + value[3] + "</td></tr>");
-						})
-
-					}
-				});
-			}); //add function
-
-
-
-		}); //ready function
-	</script>
+	
 
 
 
@@ -192,14 +53,6 @@ $("#display").append("<table><tr><th>Id</th><th>Image</th><th>Name</th><th>Price
 	}
 
 
-
-
-
-
-
-
-
-
 	?>
 
 	</div>
@@ -210,29 +63,154 @@ $("#display").append("<table><tr><th>Id</th><th>Image</th><th>Name</th><th>Price
 	<?php
 	include 'footer.php';
 	?>
-	<!-- <script>
-
-// function display(m)
-// 	  {
-// 		  html='<table><tr><th>id</th><th>image</th><th>id</th><th>price</th><th>quantity</th></tr>';
-// for(var i=0;i <m.length;i++)
-// {
-// html+='<tr><td>'+m[i].id+'</td><td>'+m[i].image+'</td><td>'+m[i].name+'</td><td>'+m[i].price+'</td><td><input type="text" name="text1" value=""></td><td><input type="submit" name="edit" value="Edit"></td><td><input type="submit" name="delet" value="Delete"></td></tr>';
-// }
-// html+="</table>";
-// document.getElementById("display").innerHTML=html;
-
-
-
-// 	  }
-
-
-
-
-
-
-// 	</script> -->
+	
 
 </body>
+<script>
+		$(document).ready(function() {
+
+var arr1=[];
+			function display(arr) {
+			console.log(arr);
+
+
+
+			html = "<table><tr><th>ID</th><th>Image</th><th>Name</th><th>Price</th><th>Quantity</th></tr>";
+
+			for (var i = 0; i < arr.length; i++) {
+				html += "<tr><td>" + arr[i][0] + "</td><td>" + arr[i][1] + "</td><td>" + arr[i][2] + "</td><td>" + arr[i][3] + "</td><td>" + arr[i][4] + "</td><td><input type='text' id='text" + i + "'></td><td><input type='button' value='Edit' onclick='edit1(" + i + ")'></td><td><input type='button'  value='delete'  onclick='deleteData1(" + i + ")'></td></tr>";
+
+
+			}
+			html += "</table>";
+			document.getElementById("display").innerHTML = html;
+
+
+		}
+
+			$("#addtocart0").click(function() {
+				console.log("In add to cart 1");
+				$.ajax({
+					url: 'function.php',
+					type: 'POST',
+					data: {
+						id: '101',
+						name: 'Basket Ball',
+						image: 'basketball.png',
+						price: '150',
+						action: 'add'
+					},
+					dataType: 'JSON',
+					success: function(data) {
+						
+						arr1=data;
+						display(arr1);
+					}
+				});
+			}); //add function
+
+
+
+
+
+			$("#addtocart1").click(function() {
+
+				$.ajax({
+					url: "function.php",
+
+					type: "post",
+
+					data: {
+						id: 102,
+						name: 'football',
+						image: 'football.png',
+						price: '120 ',
+						action: 'add'
+
+					},
+					dataType: 'JSON',
+					success: function(data) {
+						
+						arr1=data;
+						display(arr1);
+					}
+				});
+			}); //add function
+
+
+			$("#addtocart2").click(function() {
+
+				$.ajax({
+					url: "function.php",
+
+					type: "post",
+
+					data: {
+						id: 103,
+						name: 'soccer',
+						image: 'soccer.png',
+						price: '110',
+						action: 'add'
+
+					},
+					dataType: 'JSON',
+					success: function(data) {
+						
+						arr1=data;
+						display(arr1);
+					}
+				});
+			}); //add function
+
+
+			$("#addtocart3").click(function() {
+
+				$.ajax({
+					url: "function.php",
+
+					type: "post",
+
+					data: {
+						id: 104,
+						name: 'table-tennis',
+						image: 'table-tennis.png',
+						price: '150',
+						action: 'add'
+
+					},
+					dataType: 'JSON',
+					success: function(data) {
+						
+						arr1=data;
+						display(arr1);
+					}
+				});
+			}); //add function
+
+
+			$("#addtocart4").click(function() {
+
+				$.ajax({
+					url: "function.php",
+					type: "post",
+					data: {
+						id: 105,
+						name: 'tennis',
+						image: 'tennis.png',
+						price: '130',
+						action: 'add'
+					},
+					dataType: 'JSON',
+					success: function(data) {
+						arr1=data;
+						display(arr1);
+					}
+				});
+			}); //add function
+
+
+
+		}); //ready function
+	</script>
 
 </html>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if(!isset($_SESSION['addInCart']))
 {
@@ -7,25 +8,29 @@ if(!isset($_SESSION['addInCart']))
 
 
 if(isset($_POST))
-// {
+{
     
     $id=$_POST['id'];
     $name=$_POST['name'];
     $image=$_POST['image'];
     $price=$_POST['price'];
-    // echo json_encode($id);
-    $thisCart=array($id,$image,$name,$price,1);
+    $quantity=1;
+
+
+    $thisCart=array($id,$image,$name,$price, $quantity);
+
     array_push($_SESSION['addInCart'],$thisCart);
-// json_encode($_SESSION['addInCart']);
+    
+    
     echo json_encode($_SESSION['addInCart']);
 
 
-    //  print_r(json_encode($thisCart));
+   
    
 
 
    
-// }
+}
 
 
 
